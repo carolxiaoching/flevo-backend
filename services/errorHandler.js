@@ -49,6 +49,14 @@ const resErrorAll = (err, req, res, next) => {
     return resErrorProd(err, res);
   }
 
+  // Multer 錯誤 - 其他上傳錯誤（欄位名稱錯誤、檔案數量超過等）
+  if (err.name === "MulterError") {
+    err.isOperational = true;
+    err.statusCode = 400;
+    err.message = "檔案上傳錯誤，請重新確認！";
+    return resErrorProd(err, res);
+  }
+
   // 語法錯誤
   if (err.name === "SyntaxError") {
     err.isOperational = true;
