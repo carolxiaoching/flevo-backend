@@ -41,6 +41,14 @@ const resErrorAll = (err, req, res, next) => {
 
   // 正式環境
 
+  // Multer 錯誤 - 檔案大小超過限制
+  if (err.name === "MulterError" && err.code === "LIMIT_FILE_SIZE") {
+    err.isOperational = true;
+    err.statusCode = 400;
+    err.message = "檔案大小超過限制，請上傳 1MB 以內的檔案！";
+    return resErrorProd(err, res);
+  }
+
   // 語法錯誤
   if (err.name === "SyntaxError") {
     err.isOperational = true;
