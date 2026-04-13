@@ -13,7 +13,7 @@ const RecipeControllers = {
     const sortOptions = {
       asc: "createdAt", // 建立日期從新到舊排序
       desc: "-createdAt", // 建立日期從舊到新排序
-      hot: "collectsCount", // 收藏從多到少排序
+      hot: "-collectsCount", // 收藏從多到少排序
     };
     const sort = sortOptions[req.query.sort] || "-createdAt";
 
@@ -41,7 +41,7 @@ const RecipeControllers = {
     if (req.query.keyword) {
       const escapedKeyword = req.query.keyword.replace(
         /[.*+?^${}()|[\]\\]/g,
-        "\\$&"
+        "\\$&",
       );
       query.title = new RegExp(escapedKeyword, "i");
     }
@@ -98,7 +98,7 @@ const RecipeControllers = {
     const sortOptions = {
       asc: "createdAt", // 建立日期從新到舊排序
       desc: "-createdAt", // 建立日期從舊到新排序
-      hot: "collectsCount", // 收藏從多到少排序
+      hot: "-collectsCount", // 收藏從多到少排序
     };
     const sort = sortOptions[req.query.sort] || "-createdAt";
 
@@ -120,7 +120,7 @@ const RecipeControllers = {
     if (req.query.keyword) {
       const escapedKeyword = req.query.keyword.replace(
         /[.*+?^${}()|[\]\\]/g,
-        "\\$&"
+        "\\$&",
       );
       query.title = new RegExp(escapedKeyword, "i");
     }
@@ -202,7 +202,7 @@ const RecipeControllers = {
     const sortOptions = {
       asc: "createdAt", // 建立日期從新到舊排序
       desc: "-createdAt", // 建立日期從舊到新排序
-      hot: "collectsCount", // 收藏從多到少排序
+      hot: "-collectsCount", // 收藏從多到少排序
     };
     const sort = sortOptions[req.query.sort] || "-createdAt";
 
@@ -230,7 +230,7 @@ const RecipeControllers = {
     if (req.query.keyword) {
       const escapedKeyword = req.query.keyword.replace(
         /[.*+?^${}()|[\]\\]/g,
-        "\\$&"
+        "\\$&",
       );
       query.title = new RegExp(escapedKeyword, "i");
     }
@@ -318,7 +318,7 @@ const RecipeControllers = {
         condition:
           !validationUtils.isValidString(cookingTime) ||
           !["0-15 分鐘", "15-30 分鐘", "30 分鐘以上", "60 分鐘以上"].includes(
-            cookingTime
+            cookingTime,
           ),
         message: "烹飪時間欄位錯誤！",
       },
@@ -444,7 +444,7 @@ const RecipeControllers = {
           cookingTime !== undefined &&
           (!validationUtils.isValidString(cookingTime) ||
             !["0-15 分鐘", "15-30 分鐘", "30 分鐘以上", "60 分鐘以上"].includes(
-              cookingTime
+              cookingTime,
             )),
         message: "烹飪時間欄位錯誤！",
       },
@@ -509,7 +509,7 @@ const RecipeControllers = {
       {
         new: true,
         runValidators: true,
-      }
+      },
     );
 
     successHandler(res, 200, newRecipe);
@@ -567,7 +567,7 @@ const RecipeControllers = {
       {
         $addToSet: { collects: recipeId },
       },
-      { new: true }
+      { new: true },
     );
 
     // 如果更新前後的收藏數量不同，表示有新增成功
@@ -603,7 +603,7 @@ const RecipeControllers = {
       {
         $pull: { collects: recipeId },
       },
-      { new: true }
+      { new: true },
     );
 
     // 如果更新前後的收藏數量不同，表示有移除成功
@@ -611,7 +611,7 @@ const RecipeControllers = {
       // 使用 $inc 將 Recipe 的 collectsCount -1
       await Recipe.updateOne(
         { _id: recipeId },
-        { $inc: { collectsCount: -1 } }
+        { $inc: { collectsCount: -1 } },
       );
     }
 
