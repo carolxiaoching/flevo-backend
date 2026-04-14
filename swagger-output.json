@@ -3799,6 +3799,14 @@
                       "example": [],
                       "items": {}
                     },
+                    "email": {
+                      "type": "string",
+                      "example": "carol@gmail.com"
+                    },
+                    "role": {
+                      "type": "string",
+                      "example": "user"
+                    },
                     "createdAt": {
                       "type": "string",
                       "example": "2025-01-02T17:07:31.743Z"
