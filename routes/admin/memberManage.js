@@ -46,7 +46,7 @@ router.post(
 );
 
 // 確認管理員登入狀態
-router.get(
+router.post(
   "/member/checkLoginStatus",
   /**
    * #swagger.tags = ["管理員 - User 會員"]

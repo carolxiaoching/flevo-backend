@@ -3246,7 +3246,7 @@
       }
     },
     "/admin/member/checkLoginStatus": {
-      "get": {
+      "post": {
         "tags": [
           "管理員 - User 會員"
         ],
