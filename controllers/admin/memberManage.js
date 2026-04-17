@@ -35,7 +35,7 @@ const MemberControllers = {
 
     // 取出 member 資料
     const member = await User.findOne({ email, role: "admin" }).select(
-      "+password"
+      "+password",
     );
 
     // 驗證電子郵件是否已註冊
@@ -185,7 +185,7 @@ const MemberControllers = {
         new: true,
         runValidators: true,
         fields: "+email +role", // 顯示預設隱藏的 email、role
-      }
+      },
     ).lean();
 
     // 計算擁有食譜數量
@@ -227,14 +227,14 @@ const MemberControllers = {
         // 找到收藏了這些食譜的會員
         { collects: { $in: recipeIds } },
         // 從收藏清單中移除
-        { $pull: { collects: { $in: recipeIds } } }
+        { $pull: { collects: { $in: recipeIds } } },
       );
     }
 
     // 刪除指定會員
-    const delMember = await User.findByIdAndDelete(memberId, {
-      new: true,
-    });
+    const delMember = await User.findOneAndDelete({ _id: memberId }).select(
+      "+email +role",
+    );
 
     successHandler(res, 200, delMember);
   },

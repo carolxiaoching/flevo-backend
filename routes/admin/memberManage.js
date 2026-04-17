@@ -42,11 +42,11 @@ router.post(
       }
     }
   */
-  errorAsyncHandler(MemberControllers.signIn)
+  errorAsyncHandler(MemberControllers.signIn),
 );
 
 // 確認管理員登入狀態
-router.get(
+router.post(
   "/member/checkLoginStatus",
   /**
    * #swagger.tags = ["管理員 - User 會員"]
@@ -76,7 +76,7 @@ router.get(
   checkTokenAndSetAuth,
   getUserFromAuthId,
   isAdmin,
-  errorAsyncHandler(MemberControllers.checkLoginStatus)
+  errorAsyncHandler(MemberControllers.checkLoginStatus),
 );
 
 // 取得所有會員
@@ -145,7 +145,7 @@ router.get(
   checkTokenAndSetAuth,
   getUserFromAuthId,
   isAdmin,
-  errorAsyncHandler(MemberControllers.getAllMembers)
+  errorAsyncHandler(MemberControllers.getAllMembers),
 );
 
 // 取得指定會員
@@ -188,7 +188,7 @@ router.get(
   checkTokenAndSetAuth,
   getUserFromAuthId,
   isAdmin,
-  errorAsyncHandler(MemberControllers.getMember)
+  errorAsyncHandler(MemberControllers.getMember),
 );
 
 // 更新指定會員
@@ -240,7 +240,7 @@ router.patch(
   checkTokenAndSetAuth,
   getUserFromAuthId,
   isAdmin,
-  errorAsyncHandler(MemberControllers.updateMember)
+  errorAsyncHandler(MemberControllers.updateMember),
 );
 
 // 刪除指定會員
@@ -270,6 +270,8 @@ router.delete(
             "avatarImgUrl": "https://123.png",
             "description": "",
             "collects": [],
+            "email": "carol@gmail.com",
+            "role": "user",
             "createdAt": "2025-01-02T17:07:31.743Z",
             "updatedAt": "2025-01-07T17:02:49.701Z"
           }
@@ -279,7 +281,7 @@ router.delete(
   checkTokenAndSetAuth,
   getUserFromAuthId,
   isAdmin,
-  errorAsyncHandler(MemberControllers.delMember)
+  errorAsyncHandler(MemberControllers.delMember),
 );
 
 // 刪除全部會員
@@ -303,7 +305,7 @@ router.delete(
   checkTokenAndSetAuth,
   getUserFromAuthId,
   isAdmin,
-  errorAsyncHandler(MemberControllers.delAllMembers)
+  errorAsyncHandler(MemberControllers.delAllMembers),
 );
 
 module.exports = router;
