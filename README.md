@@ -146,7 +146,7 @@ flevo-backend
 | 方法     | 路徑                             | 描述         |
 | -------- | -------------------------------- | ------------ |
 | `POST`   | `/admin/member/signIn`           | 管理員登入   |
-| `GET`    | `/admin/member/checkLoginStatus` | 確認登入狀態 |
+| `POST`   | `/admin/member/checkLoginStatus` | 確認登入狀態 |
 | `GET`    | `/admin/members`                 | 取得所有會員 |
 | `GET`    | `/admin/member/:memberId`        | 取得指定會員 |
 | `PATCH`  | `/admin/member/:memberId`        | 更新指定會員 |
